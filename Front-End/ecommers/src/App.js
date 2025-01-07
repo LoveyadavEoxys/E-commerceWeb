@@ -1,13 +1,13 @@
+import ProductCard from './components/widgets/ProductCard';
+import HomePage from './pages/HomePage';
 
 
 
 function App() {
   return (
     <div >
-     
-          <p>
-            this ecommerce web site
-          </p>
+     <HomePage></HomePage>
+      
         
     </div>
   );
