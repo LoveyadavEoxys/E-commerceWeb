@@ -1,0 +1,57 @@
+
+.form-container-signUp {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading style */
+.h2-signUp {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+.input-signUp {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Input fields focus style */
+.input-signUp:focus {
+    border-color: #1565c0;
+    outline: none;
+}
+
+/* Error messages */
+.error-signUp {
+    color: red;
+    font-size: 14px;
+    margin: -10px 0 10px;
+}
+
+/* Button style */
+.button-signUp {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.button-signUp:hover {
+    background-color: #007bff;
+}

@@ -1,0 +1,75 @@
+[
+    {
+      "id": 1,
+      "name": "Apple iPhone 13",
+      "description": "128GB, Blue",
+      "price": 799.99,
+      "image": "https://example.com/iphone-13.jpg",
+      "category": "Smartphones",
+      "quantity": 50
+    },
+    {
+      "id": 2,
+      "name": "Samsung Galaxy S21",
+      "description": "256GB, Phantom Gray",
+      "price": 999.99,
+      "image": "https://example.com/galaxy-s21.jpg",
+      "category": "Smartphones",
+      "quantity": 30
+    },
+    {
+      "id": 3,
+      "name": "Sony  Headphones",
+      "description": "Noise Cancelling, Over-Ear",
+      "price": 349.99,
+      "image": "https://example.com/sony-headphones.jpg",
+      "category": "Headphones",
+      "quantity": 120
+    },
+    {
+      "id": 4,
+      "name": "Dell XPS 13 Laptop",
+      "description": "Intel i7, 16GB RAM, 512GB SSD",
+      "price": 1499.99,
+      "image": "https://example.com/dell-xps-13.jpg",
+      "category": "Laptops",
+      "quantity": 25
+    },
+    {
+      "id": 5,
+      "name": "Nike Air Zoom Pegasus 38",
+      "description": "Men's Running Shoes, Size 10, Black",
+      "price": 119.99,
+      "image": "https://example.com/nike-shoes.jpg",
+      "category": "Footwear",
+      "quantity": 200
+    },
+    {
+      "id": 6,
+      "name": "Amazon Echo Dot 4th Gen",
+      "description": "Smart Speaker with Alexa",
+      "price": 49.99,
+      "image": "https://example.com/echo-dot.jpg",
+      "category": "Smart Home",
+      "quantity": 500
+    },
+    {
+      "id": 7,
+      "name": "Samsung 50-Inch 4K  TV",
+      "description": "UHD, HDR, Smart TV",
+      "price": 399.99,
+      "image": "https://example.com/samsung-4k-tv.jpg",
+      "category": "Electronics",
+      "quantity": 40
+    },
+    {
+      "id": 8,
+      "name": "Bose SoundLink Revolve+",
+      "description": "Portable Bluetooth Speaker",
+      "price": 329.99,
+      "image": "https://example.com/bose-speaker.jpg",
+      "category": "Audio",
+      "quantity": 80
+    }
+  ]
+  

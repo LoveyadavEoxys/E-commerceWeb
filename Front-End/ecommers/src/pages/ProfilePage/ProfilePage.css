@@ -1,0 +1,116 @@
+/* Customer Profile Page Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  .customer-profile {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header Section */
+  .profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+  }
+  
+  .profile-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+  
+  .profile-email {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  /* Section Styling */
+  .profile-sections {
+    margin-top: 20px;
+  }
+  
+  .section {
+    margin-bottom: 30px;
+  }
+  
+  .section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  /* Order History Styling */
+  .order-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .order-list li {
+    background-color: #f1f3f5;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .order-button {
+    margin-top: 10px;
+    background-color: #1976d2;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .order-button:hover {
+    background-color: #1565c0;
+  }
+  
+  /* Settings Buttons */
+  .settings-button {
+    display: inline-block;
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .settings-button:hover {
+    background-color: #5a6268;
+  }
+  
+  .settings-logout {
+    background-color: #dc3545;
+  }
+  
+  .settings-logout:hover {
+    background-color: #c82333;
+  }
+  
