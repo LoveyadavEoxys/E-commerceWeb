@@ -1,67 +1,52 @@
-import React from 'react'
-import './ProfilePage.css'
-
+import React from 'react';
+import './ProfilePage.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../features/userSlice/UserSlice'; 
 const ProfilePage = () => {
+    const user = useSelector((state) => state.user.userDetail); 
+    const dispatch = useDispatch();
+
+    const logoutHandler = () => {  
+        dispatch(logout()); 
+    };
+
     return (
         <div>
             <div className="customer-profile">
-                {/* Profile Header */}
+          
                 <div className="profile-header">
                     <img
                         src="https://via.placeholder.com/150"
                         alt="Customer Avatar"
                         className="profile-avatar"
                     />
-                    <h1 className="profile-name">love yadav</h1>
-                    <p className="profile-email">@example.com</p>
+                    <h1 className="profile-name">{user.name}</h1>
+                    <p className="profile-email">{user.email}</p>
                 </div>
 
-                {/* Profile Sections */}
+               
                 <div className="profile-sections">
-                    {/* Account Details */}
+                 
                     <div className="section">
                         <h2 className="section-title">Account Details</h2>
-                        <p><strong>Full Name:</strong> love yadav</p>
-                        <p><strong>Email:</strong> @example.com</p>
-                        <p><strong>Phone:</strong> 00000 0000</p>
+                        <p><strong>Full Name:</strong> {user.name}</p>
+                        <p><strong>Email:</strong> {user.email}</p>
+                        <p><strong>Phone:</strong> {user.mobile}</p>
                     </div>
 
-                    {/* Address Details */}
+                   
                     <div className="section">
-                        <h2 className="section-title">Address</h2>
-                        <p><strong>Primary Address:</strong></p>
-                        <p>bangalore</p>
-                    </div>
-
-                    {/* Order History */}
-                    {/* <div className="section">
-          <h2 className="section-title">Order History</h2>
-          <ul className="order-list">
-            <li>
-              <p><strong>Order #12345</strong></p>
-              <p>Date: 01/05/2023</p>
-              <p>Total: $150.00</p>
-              <button className="order-button">View Details</button>
-            </li>
-            <li>
-              <p><strong>Order #12346</strong></p>
-              <p>Date: 02/15/2023</p>
-              <p>Total: $80.00</p>
-              <button className="order-button">View Details</button>
-            </li>
-          </ul>
-        </div> */}
-
-                    {/* Settings */}
-                    <div className="section">
-                        <h2 className="section-title">Account Settings</h2>
-
-                        <button className="settings-button settings-logout">Logout</button>
+                        <button
+                            className="settings-button settings-logout"
+                            onClick={logoutHandler}  
+                        >
+                            Logout
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default ProfilePage
+export default ProfilePage;

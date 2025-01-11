@@ -11,10 +11,10 @@ const CartPage = () => {
   const products = useSelector((state) => state.cart.products);
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div style={{ padding: '20px' ,textAlign : 'center'}}>
      
       {products.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p >Your cart is empty.</p>
       ) : (
         <div>
           {products.map((product) => (

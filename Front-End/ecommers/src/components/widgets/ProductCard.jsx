@@ -9,7 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography'
-import { addToCart, removeFromCart } from '../../features/updateCartSlice/updateCartSlice';
+import { addToCart, removeFromCart } from '../../features/cartSlice/CartSlice';
 
 
 export default function ProductCard({ product }) {
