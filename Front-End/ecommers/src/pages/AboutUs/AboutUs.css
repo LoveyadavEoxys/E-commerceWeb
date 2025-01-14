@@ -1,0 +1,72 @@
+/* AboutUs.css */
+
+.container {
+    margin-top: 50px;
+  }
+  
+  .page-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .introduction {
+    text-align: center;
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  
+  .mission {
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  .mission-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .mission-text {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .team {
+    margin-top: 50px;
+  }
+  
+  .team-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .card-content {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+  
+  .member-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .member-role {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  

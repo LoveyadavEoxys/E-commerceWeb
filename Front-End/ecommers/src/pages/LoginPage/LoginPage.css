@@ -7,6 +7,7 @@
     align-items: center;
     height: 100%;
     width: 100%;
+    margin-top: 50px;
 }
 
 /* Login Container */
@@ -101,3 +102,25 @@
         font-size: 24px;
     }
 }
+.signup-option a {
+    color: #505bc4;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.signup-option a:hover {
+    color: #354899;
+}
+.create-account-button {
+    background: none;
+    border: none;
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .create-account-button:hover {
+    color: #0056b3;
+  }

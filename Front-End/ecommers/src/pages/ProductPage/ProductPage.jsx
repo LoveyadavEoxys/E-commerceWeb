@@ -3,6 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductCard from '../../components/widgets/ProductCard';
 import productsData from '../../assets/products/product.json'
+import Navbar from '../../components/layout/Navbar';
 
 const ProductPage = () => {
 
@@ -31,6 +32,10 @@ const ProductPage = () => {
   };
   return (
     <div >
+   <div style={{ marginBottom: '100px' }}>
+  <Navbar />
+</div>
+
 
       <Carousel responsive={responsive}>
         {products.map(product => (

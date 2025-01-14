@@ -2,16 +2,22 @@ import React from 'react';
 import './ProfilePage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../features/userSlice/UserSlice'; 
+import Navbar from '../../components/layout/Navbar';
+import { useNavigate } from 'react-router-dom';
 const ProfilePage = () => {
     const user = useSelector((state) => state.user.userDetail); 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const logoutHandler = () => {  
         dispatch(logout()); 
+        navigate('/Login');
+
     };
 
     return (
         <div>
+            <Navbar></Navbar>
             <div className="customer-profile">
           
                 <div className="profile-header">
@@ -32,6 +38,7 @@ const ProfilePage = () => {
                         <p><strong>Full Name:</strong> {user.name}</p>
                         <p><strong>Email:</strong> {user.email}</p>
                         <p><strong>Phone:</strong> {user.mobile}</p>
+                        <p><strong>role:</strong> {user.role}</p>
                     </div>
 
                    

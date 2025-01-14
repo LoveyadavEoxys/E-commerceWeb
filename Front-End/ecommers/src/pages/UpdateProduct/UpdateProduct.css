@@ -1,0 +1,146 @@
+.update-product-container {
+  padding: 30px;
+  background-color: #f9f9f9;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.update-product-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.u-product-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 15px 0;
+  width: 700px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.u-product-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.u-product-info {
+  flex: 1;
+  max-width: 450px;
+}
+
+.u-product-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.u-product-info p {
+  color: #666;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.u-product-info img {
+  max-width: 120px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.u-product-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 20px;
+}
+
+.update-product-input {
+  margin-bottom: 12px;
+  padding: 8px;
+  width: 130px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: border-color 0.3s ease;
+}
+
+.update-product-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+.remove-product-button {
+  background-color: #f44336;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.remove-product-button:hover {
+  background-color: #d32f2f;
+}
+
+.update-product-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.update-product-button:hover {
+  background-color: #388e3c;
+}
+
+.success-message {
+  color: #388e3c;
+  font-size: 16px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.product-card .remove-product-button {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .update-product-container {
+    padding: 15px;
+  }
+
+  .product-card {
+    flex-direction: column;
+  }
+
+  .product-actions {
+    align-items: center;
+    margin-left: 0;
+  }
+
+  .update-product-input {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .update-product-button {
+    width: auto;
+  }
+}

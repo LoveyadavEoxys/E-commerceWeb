@@ -1,13 +1,4 @@
-/* General Styles */
-/* body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
-} */
 
-/* Customer Profile Wrapper */
 .customer-profile {
   width: 90%;
   max-width: 600px;
@@ -19,7 +10,7 @@
   padding: 20px;
 }
 
-/* Profile Header */
+
 .profile-header {
   text-align: center;
   margin-bottom: 20px;
@@ -44,7 +35,7 @@
   color: #666;
 }
 
-/* Profile Sections */
+
 .profile-sections {
   margin-top: 20px;
 }
@@ -61,7 +52,7 @@
   font-size: 20px;
   color: #333;
   margin-bottom: 10px;
-  border-bottom: 2px solid #4CAF50;
+  border-bottom: 2px solid #4a29a7;
   display: inline-block;
   padding-bottom: 5px;
 }
@@ -84,12 +75,12 @@
 }
 
 .settings-logout {
-  background-color: #f44336;
+  background-color: #3d2581;
   color: white;
   text-transform: uppercase;
   font-weight: bold;
 }
 
 .settings-logout:hover {
-  background-color: #d32f2f;
+  background-color: #532fd3;
 }

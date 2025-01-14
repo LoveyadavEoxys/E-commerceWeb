@@ -1,32 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const UserSlice = createSlice({
-    name: 'user',
-    initialState: {
-        isLogin: false,
-        userDetail: {
-            name: 'unknown',
-            email: '',
-            mobile: '',
-            password: ''
-        }
+  name: 'user',
+  initialState: {
+    isLogin: false,
+    userDetail: {
+      userID: '',
+      name: 'unknown',
+      email: '',
+      mobile: '',
+      role: '',
     },
-    reducers: {
-        login: (state, action) => {
-            state.isLogin = true; 
-            state.userDetail.name = action.payload.name;
-            state.userDetail.email = action.payload.email;
-            state.userDetail.mobile = action.payload.mobile;
-            state.userDetail.password = action.payload.password;
-        },
-        logout: (state) => {
-            state.isLogin = false; 
-            state.userDetail.name = 'unknown';
-            state.userDetail.email = '';
-            state.userDetail.mobile = '';
-            state.userDetail.password = '';
-        },
+  },
+  reducers: {
+    login: (state, action) => {
+      state.isLogin = true; 
+      state.userDetail.userID = action.payload.userID;
+      state.userDetail.name = action.payload.userName; 
+      state.userDetail.email = action.payload.email;
+      state.userDetail.mobile = action.payload.mobile;
+      state.userDetail.role = action.payload.role; 
     },
+    logout: (state) => {
+      state.isLogin = false; 
+      state.userDetail = {
+        userID: '',
+        name: 'unknown',
+        email: '',
+        mobile: '',
+        role: '',
+      };
+    },
+  },
 });
 
 export const { login, logout } = UserSlice.actions;
