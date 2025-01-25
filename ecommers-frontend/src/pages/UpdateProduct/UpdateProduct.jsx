@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import './UpdateProduct.css'
+import './UpdateProduct.css';
 import Navbar from "../../components/layout/Navbar";
-import productsData from '../../assets/products/product.json'
+import productsData from '../../assets/products/product.json';
 
 const UpdateProduct = () => {
   const [products, setProducts] = useState(productsData);
-
   const [success, setSuccess] = useState(false);
 
   const handleQuantityChange = (e, id) => {
@@ -21,9 +20,23 @@ const UpdateProduct = () => {
     setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
   };
 
+  const handleAddProduct = () => {
+   
+    const newProduct = {
+      id: Date.now(),  // Unique ID based on the current timestamp
+      name: "New Product",
+      description: "Description of new product",
+      price: 20.0,
+      category: "Miscellaneous",
+      image: "default-image.jpg",  // Placeholder image URL
+      quantity: 0,
+    };
+    setProducts([...products, newProduct]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate successful update
+   
     setTimeout(() => {
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
@@ -35,14 +48,17 @@ const UpdateProduct = () => {
       <Navbar />
       <div className="update-product-container">
         <h2 className="update-product-title">Update Products</h2>
+        <button className="add-product-button" onClick={handleAddProduct}>
+          Add Product
+        </button>
         <form className="update-product-form" onSubmit={handleSubmit}>
           {products.map((product) => (
             <div key={product.id} className="u-product-card">
+              <img src={product.image} alt={product.name} className="u-product-image" />
               <div className="u-product-info">
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
-                <p>Price: {product.price}</p>
-                <img src={product.image} alt={product.name} width="100" />
+                <p>Price: ${product.price}</p>
                 <p>Category: {product.category}</p>
               </div>
               <div className="u-product-actions">
@@ -63,9 +79,7 @@ const UpdateProduct = () => {
               </div>
             </div>
           ))}
-          <button className="update-product-button" type="submit">
-            Update Products
-          </button>
+         
         </form>
         {success && <p className="success-message">Product updated successfully!</p>}
       </div>

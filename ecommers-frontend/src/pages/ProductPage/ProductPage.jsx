@@ -1,55 +1,120 @@
-import { React, useEffect, useState } from 'react';
+import { React, useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ProductCard from '../../components/widgets/ProductCard';
-import productsData from '../../assets/products/product.json'
-import Navbar from '../../components/layout/Navbar';
+import ProductCard from "../../components/widgets/ProductCard";
+import productsData from "../../assets/products/product.json";
+import Navbar from "../../components/layout/Navbar";
 
 const ProductPage = () => {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([
+    "Electronics",
+    "Clothing",
+    "Furniture",
+    "Books",
+    "Toys",
+  ]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
-  const [products, setProduct] = useState([]);
+  useEffect(() => {
+    setProducts(productsData);
+  }, []);
 
-  useEffect(() => { setProduct(productsData) }, []);
+const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((product) => product.category === selectedCategory);
 
   const responsive = {
     superLargeDesktop: {
-
       breakpoint: { max: 4000, min: 3000 },
-      items: 5
+      items: 5,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3
+      items: 5,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2
+      items: 3,
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 1
-    }
+      items: 2,
+    },
   };
+
   return (
-    <div >
-   <div style={{ marginBottom: '100px' }}>
-  <Navbar />
-</div>
+    <div>
+      <div style={{ marginBottom: "10px" }}>
+        <Navbar />
+      </div>
 
+     
+      <div style={{ marginBottom: "20px" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            cursor: "pointer",
+            padding: "10px 20px",
+            backgroundColor: "#f5f5f5",
+            border: "1px solid #ddd",
+          }}
+          onClick={() => setIsCategoryOpen(!isCategoryOpen)}
+        >
+          <h3 style={{ margin: 0 }}>Categories</h3>
+          <span>{isCategoryOpen ? "▲" : "▼"}</span>
+        </div>
 
+        {isCategoryOpen && (
+          <div
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#fff",
+              border: "1px solid #ddd",
+              borderTop: "none",
+            }}
+          >
+            <ul style={{ listStyleType: "none", padding: 0, margin: 0 }}>
+              <li
+                style={{
+                  marginBottom: "10px",
+                  cursor: "pointer",
+                  color: selectedCategory === "All" ? "blue" : "black",
+                }}
+                onClick={() => setSelectedCategory("All")}
+              >
+                All
+              </li>
+              {categories.map((category, index) => (
+                <li
+                  key={index}
+                  style={{
+                    marginBottom: "10px",
+                    cursor: "pointer",
+                    color: selectedCategory === category ? "blue" : "black",
+                  }}
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+    
       <Carousel responsive={responsive}>
-        {products.map(product => (
+        {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-        
-
-
-
       </Carousel>
-
-
     </div>
-  )
-}
+  );
+};
 
-export default ProductPage
+export default ProductPage;

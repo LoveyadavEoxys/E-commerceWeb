@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import './SignUpPage.css';
+import Navbar from '../../components/layout/Navbar';
 
 const SignUpPage = () => {
     const [formData, setFormData] = useState({
@@ -8,11 +9,11 @@ const SignUpPage = () => {
         email: '',
         mobile: '',
         password: '',
-        isSeller: false, 
-        role: 'user',    
+        isSeller: false,
+        role: 'user',
     });
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -60,66 +61,65 @@ const SignUpPage = () => {
             });
     };
 
-    const goBack = () => {
-        navigate(-1); 
-    };
+
 
     return (
-        <div className="center-container">
-            <div className="nav-bar">
-                <button onClick={goBack} className="back-button">Go Back</button>
-            </div>
-            <div className="form-container-signUp">
-                <h2>User Registration</h2>
-                <form onSubmit={handleSubmit}>
-                    <input
-                        className="input-signUp"
-                        type="text"
-                        name="userName"
-                        value={formData.userName}
-                        onChange={handleChange}
-                        placeholder="UserName"
-                        required
-                    />
-                    <input
-                        className="input-signUp"
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Email"
-                        required
-                    />
-                    <input
-                        className="input-signUp"
-                        type="text"
-                        name="mobile"
-                        value={formData.mobile}
-                        onChange={handleChange}
-                        placeholder="Mobile"
-                        required
-                    />
-                    <input
-                        className="input-signUp"
-                        type="password"
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                        placeholder="Password"
-                        required
-                    />
-                    <div className="checkbox-container">
+        <div>
+            <Navbar></Navbar>
+            <div className="center-container">
+
+                <div className="form-container-signUp">
+                    <h2>User Registration</h2>
+                    <form onSubmit={handleSubmit}>
                         <input
-                            type="checkbox"
-                            id="isSeller"
-                            name="isSeller"
-                            checked={formData.isSeller}
-                            onChange={handleCheckboxChange}
+                            className="input-signUp"
+                            type="text"
+                            name="userName"
+                            value={formData.userName}
+                            onChange={handleChange}
+                            placeholder="UserName"
+                            required
                         />
-                        <label htmlFor="isSeller">Register as Seller</label>
-                    </div>
-                    <button className="button-signUp" type="submit">Register</button>
-                </form>
+                        <input
+                            className="input-signUp"
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Email"
+                            required
+                        />
+                        <input
+                            className="input-signUp"
+                            type="text"
+                            name="mobile"
+                            value={formData.mobile}
+                            onChange={handleChange}
+                            placeholder="Mobile"
+                            required
+                        />
+                        <input
+                            className="input-signUp"
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Password"
+                            required
+                        />
+                        <div className="checkbox-container">
+                            <input
+                                type="checkbox"
+                                id="isSeller"
+                                name="isSeller"
+                                checked={formData.isSeller}
+                                onChange={handleCheckboxChange}
+                            />
+                            <label htmlFor="isSeller">Register as Seller</label>
+                        </div>
+                        <button className="button-signUp" type="submit">Register</button>
+                    </form>
+                </div>
             </div>
         </div>
     );

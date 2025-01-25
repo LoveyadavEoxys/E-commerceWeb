@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { clearCart } from "../../features/cartSlice/CartSlice";
 import { useSelector } from "react-redux";
+import Navbar from "../../components/layout/Navbar";
 
 
 
@@ -37,10 +38,11 @@ const PaymentPage = () => {
   const price = location.state?.price;
 
   return (
+    <div>
+      <Navbar></Navbar>
+    
     <div className="payment-container">
-      <div className="nav-bar">
-        <button onClick={goBack} className="back-button">Go Back</button>
-      </div>
+    
 
       <div className="payment-content">
         <h1>Payment Page</h1>
@@ -52,6 +54,7 @@ const PaymentPage = () => {
           Pay Now
         </button>
       </div>
+    </div>
     </div>
   );
 };
