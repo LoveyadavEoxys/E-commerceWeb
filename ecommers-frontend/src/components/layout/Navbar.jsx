@@ -19,9 +19,10 @@ function Navbar() {
   const [searchTerm, setSearchTerm]= useState("");
 
  
-  const pages = role === 'admin'
-    ? [ 'Update Product', 'Add Product','About Us', 'Contact Us']
+  const pages = (role === 'Seller') 
+    ? ['Inventory Management', 'About Us', 'Contact Us'] 
     : ['Products', 'Cart', 'About Us', 'Contact Us'];
+  
 
   const onPageChange = useCallback((page) => {
     navigate(`/${page}`);

@@ -9,6 +9,7 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([
     "Electronics",
+    "Smartphones",
     "Clothing",
     "Furniture",
     "Books",

@@ -1,0 +1,37 @@
+
+.update-product-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  
+ 
+ 
+}
+
+
+.update-product-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.add-product-button {
+  display: inline-block;
+  margin: 10px 0 20px;
+  padding: 12px 25px;
+  background-color: rgb(83, 166, 199);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.add-product-button:hover,
+.update-product-button:hover {
+  background-color: rgb(83, 166, 199);
+}

@@ -9,7 +9,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import AboutUs from "./pages/AboutUs/AboutUs";
 import ContactUs from "./pages/ContactUs/ContactUs";
-import UpdateProduct from "./pages/UpdateProduct/UpdateProduct";
+import InventoryManagement from "./pages/inventoryManagement/InventoryManagement";
 import AddProduct from "./pages/AddProduct/AddProduct";
 import SearchResultPage from "./pages/SearchResultPage/SearchResultPage";
 
@@ -29,7 +29,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage></SignUpPage>}></Route>
         <Route path="/About Us" element={<AboutUs></AboutUs>}></Route>
         <Route path="/Contact Us" element={<ContactUs></ContactUs>}></Route>
-        <Route path="/Update Product" element={<UpdateProduct></UpdateProduct>}></Route>
+        <Route path="/Inventory Management" element={<InventoryManagement></InventoryManagement>}></Route>
         <Route path="/Add Product" element={<AddProduct></AddProduct>}></Route>
         <Route path="/SearchResultPage" element={<SearchResultPage></SearchResultPage>}></Route>
       </Routes>

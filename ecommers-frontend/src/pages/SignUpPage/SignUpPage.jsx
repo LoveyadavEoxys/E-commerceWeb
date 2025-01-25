@@ -10,7 +10,7 @@ const SignUpPage = () => {
         mobile: '',
         password: '',
         isSeller: false,
-        role: 'user',
+        role: 'customer',
     });
 
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ const SignUpPage = () => {
         setFormData((prevState) => ({
             ...prevState,
             isSeller: checked,
-            role: checked ? 'admin' : 'user',
+            role: checked ? 'Seller' : 'customer',
         }));
     };
 
@@ -50,15 +50,22 @@ const SignUpPage = () => {
 
         fetch('http://192.168.0.143:8080/users/signup', options)
             .then((response) => response.json())
+
             .then((data) => {
-                console.log(data);
-                alert('Registration successful!');
-                navigate('/Login');
+                if (!data.status) {
+
+                    alert(data.message || 'Registration failed.');
+                } else {
+
+                    alert('Registration successful!');
+                    navigate('/Login');
+                }
             })
             .catch((error) => {
                 console.error(error);
-                alert('Registration failed.');
+                alert('Registration failed due to an error.');
             });
+
     };
 
 

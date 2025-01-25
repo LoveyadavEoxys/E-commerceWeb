@@ -32,7 +32,7 @@ const AddProduct = () => {
     };
 
     fetch('http://192.168.0.143:8080/products/addproducts', options)
-      .then((response) => {
+      .then((response) => {u
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
