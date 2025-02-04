@@ -47,7 +47,7 @@ export default function ProductCard({ product }) {
       </CardContent>
       <CardActions className="product-card-actions">
         <Button className="product-card-button" size="small" onClick={() => {
-          navigate(`/paymentPage/${product.id}`, { state: { price: product.price } });
+          navigate(`/paymentPage/${product.id}`, { state: { price: product.price ,products :[product]} });
         }}>
           Buy now
         </Button>

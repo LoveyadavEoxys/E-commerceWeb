@@ -1,0 +1,21 @@
+.order-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.order-id {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.order-date,
+.order-items,
+.order-total,
+.order-buyer {
+    margin: 8px 0;
+    font-size: 16px;
+}

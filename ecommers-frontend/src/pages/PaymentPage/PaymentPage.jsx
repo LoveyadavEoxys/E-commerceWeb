@@ -6,14 +6,18 @@ import { useDispatch } from "react-redux";
 import { clearCart } from "../../features/cartSlice/CartSlice";
 import { useSelector } from "react-redux";
 import Navbar from "../../components/layout/Navbar";
+import { addOrder } from "../../features/OrderSlice/OrderSlice";
 
 
 
 const PaymentPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLogin = useSelector((state) => state.user.isLogin);
+  const location = useLocation();
 
+  const isLogin = useSelector((state) => state.user.isLogin);
+  const products = location.state?.products;
+  const price = location.state?.price;
  
 
   const handlePayment = () => {
@@ -22,7 +26,9 @@ const PaymentPage = () => {
     if (isLogin) {
       alert(`Payment of ₹${price.toFixed(2)} Successful!`);
       dispatch(clearCart());
-      navigate('/Products')
+      console.log(products);
+      dispatch(addOrder(products));
+      navigate('/Products');
     }
     else {
       alert(`you have to login first`);
@@ -34,8 +40,7 @@ const PaymentPage = () => {
   const goBack = () => {
     navigate(-1);
   };
-  const location = useLocation();
-  const price = location.state?.price;
+  
 
   return (
     <div>

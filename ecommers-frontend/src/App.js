@@ -12,7 +12,7 @@ import ContactUs from "./pages/ContactUs/ContactUs";
 import InventoryManagement from "./pages/inventoryManagement/InventoryManagement";
 import AddProduct from "./pages/AddProduct/AddProduct";
 import SearchResultPage from "./pages/SearchResultPage/SearchResultPage";
-
+import Orders from "./pages/Orders/Orders"
 
 
 function App() {
@@ -32,6 +32,7 @@ function App() {
         <Route path="/Inventory Management" element={<InventoryManagement></InventoryManagement>}></Route>
         <Route path="/Add Product" element={<AddProduct></AddProduct>}></Route>
         <Route path="/SearchResultPage" element={<SearchResultPage></SearchResultPage>}></Route>
+        <Route path="/My-orders" element={<Orders></Orders>}></Route>
       </Routes>
     </BrowserRouter>
   );
