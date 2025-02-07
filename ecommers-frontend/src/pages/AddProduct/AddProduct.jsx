@@ -4,7 +4,7 @@ import Navbar from "../../components/layout/Navbar";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
-    name: "",
+    prodName: "",
     description: "",
     price: "",
     image: "",
@@ -18,42 +18,45 @@ const AddProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { name, price, quantity, image, category } = product;
+    const { prodName, price, quantity, image, category } = product;
 
-    if (!name || !price || !quantity || !image || !category) {
+    if (!prodName || !price || !quantity || !image || !category) {
       alert("All fields except description are required!");
       return;
     }
-
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(product),
-    };
-
-    fetch('http://192.168.0.143:8080/products/addproducts', options)
-      .then((response) => {
+    const addProduct = async () => {
+      const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify([product]),
+      };
+    
+      try {
+        const response = await fetch('http://localhost:8082/products', options);
+    
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.json();
-        alert("product  added successfully");
-      })
-      .then((data) => {
+    
+        const data = await response.json();
+        alert("Product added successfully");
+    
         console.log("Product added successfully:", data);
-        
+    
         setProduct({
-          name: "",
+          prodName: "",
           description: "",
           price: "",
           image: "",
           category: "",
           quantity: "",
         });
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("There was an error with the fetch operation:", error);
-      });
+      }
+    };
+    
+    
   };
 
   return (
@@ -65,8 +68,8 @@ const AddProduct = () => {
           <input
             className="add-product-input"
             type="text"
-            name="name"
-            value={product.name}
+            name="prodName"
+            value={product.prodName}
             onChange={handleChange}
             placeholder="Product Name"
             required

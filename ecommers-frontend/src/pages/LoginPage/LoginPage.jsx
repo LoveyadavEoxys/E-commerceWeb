@@ -38,12 +38,12 @@ const LoginPage = () => {
     };
 
     try {
-      const response = await fetch('http://192.168.0.143:8080/users/login', options);
+      const response = await fetch('http://localhost:8082/user', options);
       const data = await response.json();
 
       if (response.ok) {
-        const { userID, userName, email, mobile, role } = data.data;
-        dispatch(login({ email, userName, userID, mobile, role }));
+        const { userID, name, email, mobile, role } = data.data;
+        dispatch(login({ email, name, userID, mobile, role }));
         
        
         navigate('/Profile'); 

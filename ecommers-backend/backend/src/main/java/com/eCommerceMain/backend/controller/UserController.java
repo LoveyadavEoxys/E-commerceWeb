@@ -1,6 +1,7 @@
 package com.eCommerceMain.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 //import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,7 @@ import com.eCommerceMain.backend.entity.User;
 import com.eCommerceMain.backend.service.UserService;
 
 @RestController
+@CrossOrigin(origins= "http://localhost:3000")
 public class UserController {
 	@Autowired
 	UserService userService;
@@ -24,7 +26,7 @@ public class UserController {
 
 	}
 	@PostMapping("/user")
-	public Response registerUser(@RequestBody LoginDto loginDetails) {
+	public Response loginUser(@RequestBody LoginDto loginDetails) {
 
 		return userService.loginUser(loginDetails.getEmail(), loginDetails.getPassword());
 

@@ -3,6 +3,7 @@ package com.eCommerceMain.backend.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,9 +31,10 @@ public class ProductController {
 	}
 	
 	@PostMapping("/products")
+	@CrossOrigin(origins = "http://localhost:3000")
 	public Response addProduct(@RequestBody ArrayList<Product> product)
 	
-	{  System.out.print(product.get(0).getSeller());
+	{ 
 		 return productService.addProduct(product);
 	}
 	@DeleteMapping("/product/delete/{id}")

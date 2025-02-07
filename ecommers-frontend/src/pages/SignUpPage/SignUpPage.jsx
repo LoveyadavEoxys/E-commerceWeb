@@ -5,7 +5,7 @@ import Navbar from '../../components/layout/Navbar';
 
 const SignUpPage = () => {
     const [formData, setFormData] = useState({
-        userName: '',
+        name: '',
         email: '',
         mobile: '',
         password: '',
@@ -13,6 +13,7 @@ const SignUpPage = () => {
         role: 'customer',
     });
 
+    const [loading, setLoading] = useState(false); // Loading state
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -32,57 +33,53 @@ const SignUpPage = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!formData.userName || !formData.email || !formData.mobile || !formData.password) {
+       
+        const { name, email, mobile, password } = formData;
+        if (!name.trim() || !email.trim() || !mobile.trim() || !password.trim()) {
             alert('All fields are required');
             return;
         }
 
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-        };
+        setLoading(true); 
 
-        fetch('http://192.168.0.143:8080/users/signup', options)
-            .then((response) => response.json())
-
-            .then((data) => {
-                if (!data.status) {
-
-                    alert(data.message || 'Registration failed.');
-                } else {
-
-                    alert('Registration successful!');
-                    navigate('/Login');
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-                alert('Registration failed due to an error.');
+        try {
+            const response = await fetch('http://localhost:8082/user', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
             });
 
+            const data = await response.json();
+
+            if (response.ok) {
+                alert('Registration successful!');
+                navigate('/Login');
+            } else {
+                alert('Registration failed: ' + (data.message || 'Try again.'));
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Registration failed due to an error.');
+        } finally {
+            setLoading(false); 
+        }
     };
-
-
 
     return (
         <div>
-            <Navbar></Navbar>
+            <Navbar />
             <div className="center-container">
-
                 <div className="form-container-signUp">
                     <h2>User Registration</h2>
                     <form onSubmit={handleSubmit}>
                         <input
                             className="input-signUp"
                             type="text"
-                            name="userName"
-                            value={formData.userName}
+                            name="name"
+                            value={formData.name}
                             onChange={handleChange}
                             placeholder="UserName"
                             required
@@ -124,7 +121,9 @@ const SignUpPage = () => {
                             />
                             <label htmlFor="isSeller">Register as Seller</label>
                         </div>
-                        <button className="button-signUp" type="submit">Register</button>
+                        <button className="button-signUp" type="submit" disabled={loading}>
+                            {loading ? 'Registering...' : 'Register'}
+                        </button>
                     </form>
                 </div>
             </div>
