@@ -55,6 +55,12 @@
   color: #1d72b8;
 }
 
+.cart-product-quantity {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1db837;
+}
+
 .quantity-controls {
   display: flex;
   justify-content: flex-end;

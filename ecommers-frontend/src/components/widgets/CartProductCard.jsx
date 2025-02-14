@@ -1,25 +1,56 @@
 import * as React from 'react';
 import './cartProductCard.css';
-import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../../features/cartSlice/CartSlice';
+import { useDispatch ,useSelector } from 'react-redux';
 
-const CartProductCard = ({ product }) => {
+
+const CartProductCard = ({ product,quantity,onCartProductRemove }) => {
+    const userId = useSelector((state) => state.user.userDetail.userId);
     const dispatch = useDispatch();
+    const Tproduct = product;
+    // const handleRemoveClick = () => {
+    //     dispatch(removeFromCart(product.id));
+    // };
+    const handleRemoveClick = async () => {
+            try {
+              const response = await fetch(`http://localhost:8082/cart/${userId}/${Tproduct.prodId}`, {
+                method: 'DELETE',
+              });
+            
+              if (!response.ok) {
+                throw new Error('Failed to remove product');
+              }
+              if(response.status)
+              {
+                onCartProductRemove(Tproduct.prodId);
+              }
+        
+            //   onProductRemove(id);
+            } catch (error) {
+              console.log(error.message);
+            }
 
-    const handleRemoveClick = () => {
-        dispatch(removeFromCart(product.id));
-    };
+          
+          };
+        
+
+
+
+
+     
+
+
 
     return (
         <div className="cart-cart-container">
             <div className="cart-product-card">
                 <div className="cart-product-image">
-                    <img src={product.image || "https://via.placeholder.com/80"} alt={product.name} />
+                    <img src={Tproduct.image || "https://via.placeholder.com/80"} alt={Tproduct.name} />
                 </div>
                 <div className="cart-product-details">
-                    <div className="cart-product-title">{product.name}</div>
-                    <div className="cart-product-description">{product.description}</div>
-                    <div className="cart-product-price">Price: ₹{product.price.toFixed(2)}</div>
+                    <div className="cart-product-title">{Tproduct.name}</div>
+                    <div className="cart-product-description">{Tproduct.description}</div>
+                    <div className="cart-product-price">Price: ₹{Tproduct.price}</div>
+                    <div className="cart-product-quantity">Quantity :  {quantity}</div>
                     <div className="quantity-controls">
                         <button className="cart-remove-button" onClick={handleRemoveClick}>Remove</button>
                     </div>

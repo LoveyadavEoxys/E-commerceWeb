@@ -16,7 +16,7 @@ const ProfilePage = () => {
     };
 
     const navigateToOrders = () => {
-        navigate('/my-orders'); // Update the route based on your routing setup
+        navigate('/my-orders'); 
     };
 
     return (

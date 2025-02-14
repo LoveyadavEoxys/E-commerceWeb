@@ -18,6 +18,7 @@ import com.eCommerceMain.backend.entity.Product;
 import com.eCommerceMain.backend.service.ProductService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class ProductController {
 
 	@Autowired
@@ -31,7 +32,6 @@ public class ProductController {
 	}
 	
 	@PostMapping("/products")
-	@CrossOrigin(origins = "http://localhost:3000")
 	public Response addProduct(@RequestBody ArrayList<Product> product)
 	
 	{ 
@@ -41,10 +41,10 @@ public class ProductController {
 	public Response deleteProduct(@PathVariable("id") Long id) {
 	    return  productService.deleteProduct(id);
 	}
-    @PutMapping("product/update")
-	public Response updateProduct(@RequestBody Product updateProduct)
+    @PutMapping("product/update/{id}")
+	public Response updateProduct(@PathVariable("id") Long id,@RequestBody Long quantity)
 	{
-		return productService.updateProduct(updateProduct);
+		return productService.updateProduct(id, quantity);
 	}
 	
 	

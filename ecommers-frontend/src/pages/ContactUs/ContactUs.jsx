@@ -14,64 +14,9 @@ function ContactUs() {
       </Typography>
 
      
-      <Typography variant="body1" className="contact-description" paragraph>
-        We’d love to hear from you! Please fill out the form below or use the contact details to get in touch with us.
-      </Typography>
-
       
-      <Box component="form" className="contact-form" noValidate autoComplete="off">
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Your Name"
-              variant="outlined"
-              className="contact-input"
-              required
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Your Email"
-              variant="outlined"
-              className="contact-input"
-              type="email"
-              required
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Subject"
-              variant="outlined"
-              className="contact-input"
-              required
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              label="Message"
-              variant="outlined"
-              multiline
-              rows={4}
-              className="contact-input"
-              required
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              variant="contained"
-              color="primary"
-              className="contact-button"
-              type="submit"
-            >
-              Send Message
-            </Button>
-          </Grid>
-        </Grid>
-      </Box>
+      
+     
 
      
       <Box className="contact-details" mt={4}>

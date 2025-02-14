@@ -5,7 +5,7 @@ const UserSlice = createSlice({
   initialState: {
     isLogin: false,
     userDetail: {
-      userID: '',
+      userId: '',
       name: 'unknown',
       email: '',
       mobile: '',
@@ -15,7 +15,7 @@ const UserSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.isLogin = true; 
-      state.userDetail.userID = action.payload.userID;
+      state.userDetail.userId = action.payload.userId;
       state.userDetail.name = action.payload.name; 
       state.userDetail.email = action.payload.email;
       state.userDetail.mobile = action.payload.mobile;

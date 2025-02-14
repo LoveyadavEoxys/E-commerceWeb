@@ -21,7 +21,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<ProductPage></ProductPage>}></Route>
-        <Route path="/paymentPage/:id" element={<PaymentPage></PaymentPage>}></Route>
+        <Route path="/paymentPage" element={<PaymentPage></PaymentPage>}></Route>
         <Route path="/Products" element={<ProductPage></ProductPage>}></Route>
         <Route path="/Cart" element={<CartPage></CartPage>}></Route>
         <Route path="/Login" element={<LoginPage></LoginPage>}></Route>

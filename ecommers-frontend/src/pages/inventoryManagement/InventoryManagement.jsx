@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import './InventoryManagement.css';
 import Navbar from "../../components/layout/Navbar";
 import productsData from '../../assets/products/product.json';
@@ -7,11 +7,27 @@ import { useNavigate } from "react-router-dom";
 
 
 const InventoryManagement = () => {
-  const [products, setProducts] = useState(productsData);
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
 
+ useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8082/products');
+        const productsData = await response.json();
+       setProducts(productsData.data);
+       
+      } catch (error) {
+        console.error('Error occurred:', error);
+      }
+    };
 
+    fetchData();
+  }, []);
+  const handleProductRemoval = (productId) => {
+    setProducts(products.filter((product) => product.prodId !== productId));
+  };
 
   const handleAddProduct = () => {
    
@@ -31,9 +47,9 @@ const InventoryManagement = () => {
         <div className="update-product" >
           {products.map((product) => (
             <UpdateProductCard
-              key={product.id}
+              key={product.prodId}
               product={product}
-
+              onProductRemove={handleProductRemoval}
 
             />
           ))}

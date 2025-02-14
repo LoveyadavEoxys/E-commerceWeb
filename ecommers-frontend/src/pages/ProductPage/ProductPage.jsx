@@ -2,7 +2,6 @@ import { React, useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProductCard from "../../components/widgets/ProductCard";
-import productsData from "../../assets/products/product.json";
 import Navbar from "../../components/layout/Navbar";
 
 const ProductPage = () => {
@@ -19,10 +18,21 @@ const ProductPage = () => {
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
   useEffect(() => {
-    setProducts(productsData);
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8082/products');
+        const productsData = await response.json();
+        console.log(productsData.data);
+        setProducts(productsData.data);
+      } catch (error) {
+        console.error('Error occurred:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
-const filteredProducts =
+  const filteredProducts =
     selectedCategory === "All"
       ? products
       : products.filter((product) => product.category === selectedCategory);
@@ -52,7 +62,6 @@ const filteredProducts =
         <Navbar />
       </div>
 
-     
       <div style={{ marginBottom: "20px" }}>
         <div
           style={{
@@ -108,7 +117,6 @@ const filteredProducts =
         )}
       </div>
 
-    
       <Carousel responsive={responsive}>
         {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />

@@ -1,8 +1,9 @@
 package com.eCommerceMain.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Product {
@@ -13,47 +14,78 @@ public class Product {
 
     private String prodName;
     private Double price;
-    private String description;
+    private String image;
+    private String description; 
     private Long quantity;
-
-    @ManyToOne(fetch = FetchType.EAGER) 
-    @JoinColumn(name = "sellerId", nullable = false)  
-    @JsonBackReference 
-    private User seller;
-   
     private String category;
 
     public Product() {}
 
-    public Product(String prodName, Double price, String description, Long quantity, User seller, String category) {
+    public Product(String prodName, Double price, String description, Long quantity, String image, String category) {
         this.prodName = prodName;
         this.price = price;
         this.description = description;
         this.quantity = quantity;
-        this.seller = seller;
+        this.image = image;
         this.category = category;
     }
 
-    public Long getProdId() { return prodId; }
-    public void setProdId(Long prodId) { this.prodId = prodId; }
+    // Getters and Setters
+    public Long getProdId() {
+        return prodId;
+    }
 
-    public String getProdName() { return prodName; }
-    public void setProdName(String prodName) { this.prodName = prodName; }
+    public void setProdId(Long prodId) {
+        this.prodId = prodId;
+    }
 
-    public Double getPrice() { return price; }
-    public void setPrice(Double price) { this.price = price; }
+    public String getProdName() {
+        return prodName;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public void setProdName(String prodName) {
+        this.prodName = prodName;
+    }
 
-    public Long getQuantity() { return quantity; }
-    public void setQuantity(Long quantity) { this.quantity = quantity; }
+    public Double getPrice() {
+        return price;
+    }
 
-    public User getSeller() { return seller; }
-    public void setSeller(User seller) { this.seller = seller; }
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
-    public String getCategory() { return category; }
-    public void setCategory(String category) { this.category = category; }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Long quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     @Override
     public String toString() {
@@ -63,7 +95,6 @@ public class Product {
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", quantity=" + quantity +
-                ", seller=" + (seller != null ? seller.getUserId() : "null") +
                 ", category='" + category + '\'' +
                 '}';
     }

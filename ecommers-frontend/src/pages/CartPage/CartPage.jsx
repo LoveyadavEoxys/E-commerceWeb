@@ -1,61 +1,78 @@
-import { React } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/layout/Navbar';
-
-
-import './Cartpage.css'
-
-
 import CartProductCard from '../../components/widgets/CartProductCard';
-
-
-
+import './Cartpage.css';
 
 const CartPage = () => {
-  const price = useSelector((state) => state.cart.totalAmount);
-  const products = useSelector((state) => state.cart.products);
-  
+  const userId = useSelector((state) => state.user.userDetail?.userId); 
+  const totalAmount = useSelector(state => state.cart.totalAmount);
+  // const price = useSelector((state) => state.cart.totalAmount);
+
+ 
+  const [products, setProducts] = useState([]); 
   const navigate = useNavigate();
 
+  useEffect(() => {
+
+    console.log(totalAmount);
+    console.log("totalAmount");
+
+    if (!userId) return;
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8082/cart/${userId}`);
+        const data = await response.json();
+        
+        console.log("Fetched Products:", data.data);
+        setProducts(Array.isArray(data.data) ? data.data : []); 
+
+      } catch (error) {
+        console.error('Error occurred:', error);
+        setProducts([]); 
+      }
+    };
+
+    fetchData();
+  }, [userId]);
 
   const buyNowHandler = () => {
-    if(products.length===0)
-    {
-      alert('your cart is empty');
+    if (products.length === 0) {
+      alert('Your cart is empty');
       navigate('/Products');
+    } else {
+      navigate(`/paymentPage`, { state: { price: totalAmount, products: products } });
     }
-    else{
-    navigate('/paymentPage/1 ', { state: { price ,products} });
-    }}
+  };
+  const handleCartProductRemoval = (productId) => {
+    setProducts(products.filter((product) => product.product.prodId !== productId));
+  };
 
   return (
     <div>
-      <Navbar></Navbar>
+      <Navbar />
       <div style={{ padding: '20px', textAlign: 'center' }}>
-
         {products.length === 0 ? (
-          <p >Your cart is empty.</p>
+          <p>Your cart is empty.</p>
         ) : (
           <div>
             {products.map((product) => (
-              <CartProductCard key={product.id} product={product} />
+              <CartProductCard key={product.id} product={product.product} quantity ={product.quantity} onCartProductRemove={handleCartProductRemoval}/>
             ))}
           </div>
-
         )}
       </div>
-      <div class="price-container">
-        <div class="total-price">
+      <div className="price-container">
+        <div className="total-price">
           <span>Total Price:</span>
-          <span class="price">₹{price.toFixed(2)}</span>
+          <span className="price">₹{totalAmount}</span>
         </div>
-        <button class="buy-now-btn" onClick={buyNowHandler}>Buy Now</button>
+        <button className="buy-now-btn" onClick={buyNowHandler}>Buy Now</button>
       </div>
-
     </div>
   );
 };
 
 export default CartPage;
-

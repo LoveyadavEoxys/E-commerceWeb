@@ -42,13 +42,14 @@ const LoginPage = () => {
       const data = await response.json();
 
       if (response.ok) {
-        const { userID, name, email, mobile, role } = data.data;
-        dispatch(login({ email, name, userID, mobile, role }));
+        const { userId, name, email, mobile, role } = data.data;
+        dispatch(login({ email, name, userId, mobile, role }));
         
-       
-        navigate('/Profile'); 
+
+        console.log(userId);
+        navigate('/Profile');
       } else {
-        alert('Login failed: ' + data.message); 
+        alert('Login failed: ' + data.message);
       }
     } catch (error) {
       console.error('Error occurred:', error);
@@ -60,10 +61,10 @@ const LoginPage = () => {
     navigate('/signup');
   };
 
-  return ( <div>
-     <Navbar></Navbar>
+  return (<div>
+    <Navbar></Navbar>
     <div className="login-body">
-       
+
       <div className="login-container">
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
@@ -98,7 +99,7 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
-    </div>
+  </div>
   );
 };
 
