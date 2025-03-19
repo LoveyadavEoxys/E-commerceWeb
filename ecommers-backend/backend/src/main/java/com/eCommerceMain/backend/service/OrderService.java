@@ -1,6 +1,9 @@
 package com.eCommerceMain.backend.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +84,7 @@ public class OrderService {
 	}
 
 	public Response placeOrderByCart(Long userId) {
+
 		Response response = new Response();
 		User user = userRepository.findById(userId).orElse(null);
 		if (user == null) {
@@ -100,6 +104,7 @@ public class OrderService {
 
 		List<CartItem> cartItems = cartItemRepository.findByCart(cart);
 		
+		
 		for(int i =0;i<cartItems.size();i++)
 		{
 			Product product = cartItems.get(i).getProduct();
@@ -116,11 +121,98 @@ public class OrderService {
 			orderItem.setPrice(product.getPrice()*cartItems.get(i).getQuantity());
 			
 			orderItemRepository.save(orderItem);
+			
 		}
-		
+		   cartRepository.delete(cart); 
 		response.setData(cartItems);
 		response.setStatus(true);
 		response.setMessage("demo");
 		return response;
 	}
+
+	public Response getOrderByCart(Long userId) {
+	    Response response = new Response();
+
+	    User user = userRepository.findById(userId).orElse(null);
+	    if (user == null) {
+	        response.setData(null);
+	        response.setStatus(false);
+	        response.setMessage("User not found");
+	        return response;
+	    }
+
+	    List<Order> orders = orderRepository.findByUserId(userId);
+	    if (orders.isEmpty()) {
+	        response.setData(null);
+	        response.setStatus(false);
+	        response.setMessage("No orders found for this user");
+	        return response;
+	    }
+
+	    // Structure the response properly
+	    List<Map<String, Object>> orderDetailsList = new ArrayList<>();
+
+	    for (Order order : orders) {
+	        List<OrderItem> orderItems = orderItemRepository.findByOrder(order);
+
+	        System.out.println("Order ID: " + order.getId() + " - Order Items: " + orderItems);
+
+	        List<Map<String, Object>> itemsList = new ArrayList<>();
+
+	        for (OrderItem item : orderItems) {
+	            Map<String, Object> itemDetails = new HashMap<>();
+	            itemDetails.put("productId", item.getProduct().getProdId());
+	            itemDetails.put("productName", item.getProduct().getProdName());
+	            itemDetails.put("productPrice", item.getProduct().getPrice());
+	            itemDetails.put("quantity", item.getQuantity());
+	            itemDetails.put("totalPrice", item.getPrice());
+
+	            itemsList.add(itemDetails);
+	        }
+
+	        Map<String, Object> orderInfo = new HashMap<>();
+	        orderInfo.put("orderId", order.getId());
+	        orderInfo.put("totalAmount", order.getTotalAmount());
+	        orderInfo.put("totalProducts", orderItems.stream().mapToLong(OrderItem::getQuantity).sum());
+	        orderInfo.put("orderItems", itemsList);
+
+	        orderDetailsList.add(orderInfo);
+	    }
+
+	    response.setData(orderDetailsList);
+	    response.setStatus(true);
+	    response.setMessage("Orders retrieved successfully");
+	    return response;
+	}
+
+	public Response getAllOrders() {
+	    Response response = new Response();
+	    List<Order> orders = orderRepository.findAll();
+	    
+	    if (orders.isEmpty()) {
+	        response.setData(null);
+	        response.setStatus(false);
+	        response.setMessage("No orders found");
+	        return response;
+	    }
+
+	    List<Map<String, Object>> orderDetailsList = new ArrayList<>();
+
+	    for (Order order : orders) {
+	        Map<String, Object> orderInfo = new HashMap<>();
+	        orderInfo.put("orderId", order.getId());
+	        orderInfo.put("userId", order.getUserId());
+	        orderInfo.put("totalAmount", order.getTotalAmount());
+                            
+	        orderDetailsList.add(orderInfo);
+	    }
+
+	    response.setData(orderDetailsList);
+	    response.setStatus(true);
+	    response.setMessage("All orders retrieved successfully");
+	    return response; 
+	}
+
+
+
 }

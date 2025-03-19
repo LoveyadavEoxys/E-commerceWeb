@@ -37,4 +37,10 @@ public class CartController {
 	{
 		return cartService.removeProductFromCart(userId,prodId); 
 	}
+	
+	@GetMapping("/getTotalPrice/{userId}")
+	   public Response getTotalPrice(@PathVariable Long userId)
+	   {
+			return cartService.getTotalPrice(userId);
+	   }
 } 

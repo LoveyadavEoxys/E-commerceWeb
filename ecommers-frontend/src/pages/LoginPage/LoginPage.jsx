@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './LoginPage.css';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../features/userSlice/UserSlice';
+
 import Navbar from '../../components/layout/Navbar';
 
 const LoginPage = () => {
@@ -10,7 +10,7 @@ const LoginPage = () => {
     email: '',
     password: '',
   });
-  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -39,17 +39,22 @@ const LoginPage = () => {
 
     try {
       const response = await fetch('http://localhost:8082/user', options);
-      const data = await response.json();
 
-      if (response.ok) {
-        const { userId, name, email, mobile, role } = data.data;
-        dispatch(login({ email, name, userId, mobile, role }));
+      if (!response.ok) {
+        throw new Error('Invalid credentials or server error');
+      }
+
+      const data = await response.json(); 
+      console.log('Response Data:', data);
+
+      if (data.token && data.userId) {
+        sessionStorage.setItem('token', data.token);
+        sessionStorage.setItem('userId', data.userId);
         
-
-        console.log(userId);
+        alert('Login successful');
         navigate('/Profile');
       } else {
-        alert('Login failed: ' + data.message);
+        alert('Login failed. Invalid credentials.');
       }
     } catch (error) {
       console.error('Error occurred:', error);
@@ -61,45 +66,45 @@ const LoginPage = () => {
     navigate('/signup');
   };
 
-  return (<div>
-    <Navbar></Navbar>
-    <div className="login-body">
+  return (
+    <div>
+      <Navbar />
+      <div className="login-body">
+        <div className="login-container">
+          <h2>Login</h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              className="input-loginUp"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              required
+            />
+            <input
+              className="input-loginUp"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Password"
+              required
+            />
+            <button className="button-loginUp" type="submit">
+              Login
+            </button>
+          </form>
 
-      <div className="login-container">
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-          <input
-            className="input-loginUp"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Email"
-            required
-          />
-          <input
-            className="input-loginUp"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
-          <button className="button-loginUp" type="submit">
-            Login
-          </button>
-        </form>
-
-        <div className="signup-option">
-          <p>Don't have an account?</p>
-          <button onClick={handleCreateAccount} className="create-account-button">
-            Create New Account
-          </button>
+          <div className="signup-option">
+            <p>Don't have an account?</p>
+            <button onClick={handleCreateAccount} className="create-account-button">
+              Create New Account
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   );
 };
 

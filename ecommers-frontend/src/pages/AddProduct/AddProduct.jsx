@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
+  let token = sessionStorage.getItem("token");
 
   const navigator = useNavigate();
   const [product, setProduct] = useState({
@@ -34,7 +35,7 @@ const AddProduct = () => {
 
     const options = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" ,'Authorization': `Bearer ${token}`},
       body: JSON.stringify([product]),
     };
 

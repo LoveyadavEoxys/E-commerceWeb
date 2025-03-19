@@ -22,7 +22,7 @@ const ProductPage = () => {
       try {
         const response = await fetch('http://localhost:8082/products');
         const productsData = await response.json();
-        console.log(productsData.data);
+        
         setProducts(productsData.data);
       } catch (error) {
         console.error('Error occurred:', error);

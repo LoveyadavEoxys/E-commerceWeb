@@ -1,8 +1,7 @@
 package com.eCommerceMain.backend.entity;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.List;
-
 @Entity
 @Table(name = "orders") 
 public class Order {
@@ -14,15 +13,15 @@ public class Order {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "total_amount", nullable = false)
+    @Column(name = "total_amount", nullable = false) 
     private Double totalAmount;
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference // Use this to manage the serialization of order items
     private List<OrderItem> orderItems;
 
-
 	public Long getId() {
-		return id; 
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -53,5 +52,5 @@ public class Order {
 		this.orderItems = orderItems;
 	}
 
-
+    
 }

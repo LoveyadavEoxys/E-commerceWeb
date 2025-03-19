@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 
 const InventoryManagement = () => {
+  let token = sessionStorage.getItem("token");
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
@@ -14,7 +15,9 @@ const InventoryManagement = () => {
  useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8082/products');
+        const response = await fetch('http://localhost:8082/products',{ method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}` }});
         const productsData = await response.json();
        setProducts(productsData.data);
        

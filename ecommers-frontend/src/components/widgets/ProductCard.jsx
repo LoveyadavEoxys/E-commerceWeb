@@ -8,20 +8,25 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { addToCart, removeFromCart } from '../../features/cartSlice/CartSlice';
-// import './ProductCard.css';
+import './ProductCard.css';
 
 export default function ProductCard({ product }) {
+  
   const userId = useSelector((state) => state.user.userDetail.userId);
   const [cartStatus, changeCartStatus] = useState('Add To Cart');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  let token = sessionStorage.getItem("token");
 
   const addedToCart = async () => {
 
     if (cartStatus === 'Add To Cart') {
       const options = {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" ,
+           'Authorization': `Bearer ${token}`
+          
+        },
   
       };
 
@@ -44,7 +49,10 @@ export default function ProductCard({ product }) {
       changeCartStatus('Add To Cart');
       const options = {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",  
+          'Authorization': `Bearer ${token}`
+         
+       },
   
       };
 
@@ -90,7 +98,7 @@ export default function ProductCard({ product }) {
       />
       <CardContent className="product-card-content">
         <Typography className="product-card-title">
-          {product.name}
+          {product.prodName}
         </Typography>
         <Typography className="product-card-description">
           {product.description}

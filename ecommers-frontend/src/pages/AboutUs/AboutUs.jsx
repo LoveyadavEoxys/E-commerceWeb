@@ -37,26 +37,7 @@ function AboutUs() {
 
 
    
-      <div className="team">
-        <h4 className="team-title">Meet Our Team</h4>
-        <Grid container spacing={4} justifyContent="center">
-          {teamMembers.map((member, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card>
-                <CardContent className="card-content">
-                  <Avatar
-                    alt={member.name}
-                    src={member.avatar}
-                    className="avatar"
-                  />
-                  <div className="member-name">{member.name}</div>
-                  <div className="member-role">{member.role}</div>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </div>
+      
     </Container>
     </div>
   );

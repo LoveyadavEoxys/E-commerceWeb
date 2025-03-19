@@ -151,7 +151,44 @@ public class CartService {
 		response.setMessage("Product removed from cart successfully");
 		return response;
 	}
+	public Response getTotalPrice(Long userId) {
+	    Response response = new Response();
 
+	    // Check if user exists
+	    User user = userRepository.findById(userId).orElse(null);
+	    if (user == null) {
+	        response.setData(null);
+	        response.setStatus(false);
+	        response.setMessage("User not found");
+	        return response;
+	    }
+
+	    // Retrieve the user's cart
+	    Cart cart = cartRepository.findByUser(user).orElse(null);
+	    if (cart == null) {
+	        response.setData(0.0);
+	        response.setStatus(true);
+	        response.setMessage("Cart is empty");
+	        return response;
+	    }
+
+	  
+	    List<CartItem> cartItems = cartItemRepository.findByCart(cart);
+	    double total = 0.0;
+
+	    for (CartItem item : cartItems) {
+	        Product product = item.getProduct();
+	        if (product != null) {
+	            total += item.getQuantity() * product.getPrice();
+	        }
+	        // Optional: Handle cases where product might be null (e.g., deleted product)
+	    }
+
+	    response.setData(total);
+	    response.setStatus(true);
+	    response.setMessage("Total price calculated successfully");
+	    return response;
+	}
 	
-
+	
 }

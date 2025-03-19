@@ -5,26 +5,43 @@ import OrderCard from '../../components/widgets/OrderCard';
 import './Orders.css';
 
 const SearchResultPage = () => {
- 
-    // const userId = useSelector((state) => state.user.userDetail.id); 
+    const [token, setToken] = useState(sessionStorage.getItem("token"));
+    const userId = useSelector((state) => state.user.userDetail.userId);
     const role = useSelector((state) => state.user.userDetail.role);
-    const orders = useSelector((state)=> state.orders.orders)
+    const [orders, setOrders] = useState([]);
 
+    useEffect(() => {
+        setToken(sessionStorage.getItem("token")); 
+    }, []);
 
-    // useEffect(() => {
-    //     const fetchOrders = async () => {
-    //         try {
-               
-    //             const response = await fetch(`/api/orders?userId=${userId}`);
-    //             const data = await response.json();
-    //             setOrders(data);
-    //         } catch (error) {
-    //             console.error('Error fetching orders:', error);
-    //         }
-    //     };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+              console.log(role);
+                const url = role === "Seller" ? "http://localhost:8082/order" : `http://localhost:8082/order/${userId}`;
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
 
-    //     fetchOrders();
-    // }, [userId]);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const Data = await response.json();
+                console.log(Data.data);
+                setOrders(Array.isArray(Data.data) ? Data.data : []);
+
+            } catch (error) {
+                console.error('Error occurred:', error);
+                setOrders([]);
+            }
+        };
+
+        fetchData();
+    }, [userId, token, role]);
 
     return (
         <>

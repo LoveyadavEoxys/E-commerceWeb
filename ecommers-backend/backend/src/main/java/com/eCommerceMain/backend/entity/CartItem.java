@@ -1,6 +1,7 @@
 package com.eCommerceMain.backend.entity;
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 
 @Entity
 public class CartItem {

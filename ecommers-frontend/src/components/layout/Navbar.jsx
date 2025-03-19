@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState ,useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -8,7 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import producdata from '../../assets/products/product.json';
+
 import './Navbar.css'
 
 function Navbar() {
@@ -17,7 +17,22 @@ function Navbar() {
   const role = useSelector((state) => state.user.userDetail.role); 
   const userAvatar = "https://cdn-icons-png.flaticon.com/512/219/219983.png";
   const [searchTerm, setSearchTerm]= useState("");
+  const [products, setProducts] = useState([]); 
 
+   useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch('http://localhost:8082/products');
+          const productsData = await response.json();
+          console.log(productsData.data);
+          setProducts(productsData.data);
+        } catch (error) {
+          console.error('Error occurred:', error);
+        }
+      };
+  
+      fetchData();
+    }, []);
  
   const pages = (role === 'Seller') 
     ? ['Inventory Management', 'About Us', 'Contact Us'] 
@@ -36,7 +51,7 @@ function Navbar() {
     }
   }, [isLogin, navigate]);
   const handleSearch =()=>{
-    const result = producdata.filter(product=> product.name.toLowerCase().includes(searchTerm));
+    const result = products.filter(product=> product.prodName.toLowerCase().includes(searchTerm));
       navigate('/SearchResultPage',{state : result});
    
   
